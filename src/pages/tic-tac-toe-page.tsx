@@ -29,7 +29,7 @@ export function TicTacToePage() {
   return (
     <div className="mx-auto flex h-full max-h-dvh max-w-sm flex-col justify-center p-4">
       <div className="flex flex-col items-center space-y-3">
-        <h1 className="mb-10 font-bold font-galindo text-7xl tracking-wider">
+        <h1 className="mb-10 font-bold font-galindo text-5xl tracking-wider">
           TicTacToe
         </h1>
         <ScoreBoard o={score.O} x={score.X} />
@@ -43,12 +43,12 @@ export function TicTacToePage() {
           />
         </div>
         <Controls
+          difficulty={difficulty}
+          onChangeDifficulty={setDifficulty}
           onReset={reset}
           onResetScore={resetScore}
           onToggleCpu={toggleCpu}
           vsCpu={vsCpu}
-          difficulty={difficulty}
-          onChangeDifficulty={setDifficulty}
         />
       </div>
     </div>
