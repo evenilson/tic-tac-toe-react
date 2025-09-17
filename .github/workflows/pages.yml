@@ -2,10 +2,23 @@ name: Deploy GH Pages
 on:
   push:
     branches: [main]
+    paths:
+      - "src/**"
+      - "index.html"
+      - "vite.config.*"
+      - "tsconfig*.json"
+      - "tailwind.config.*"
+      - "postcss.config.*"
+      - "public/**"
+      - "package.json"
+      - "bun.lockb"
+    workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
