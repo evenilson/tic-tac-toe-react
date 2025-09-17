@@ -5,6 +5,7 @@ import {
   useActions,
   useBoard,
   useCpuAutoPlay,
+  useDifficulty,
   useScore,
   useVsCpu,
 } from "@/features/game/model"
@@ -16,7 +17,8 @@ export function TicTacToePage() {
   const board = useBoard()
   const vsCpu = useVsCpu()
   const score = useScore()
-  const { play, reset, resetScore, toggleCpu } = useActions()
+  const { play, reset, resetScore, toggleCpu, setDifficulty } = useActions()
+  const difficulty = useDifficulty()
 
   const win = calculateWinner(board)
   const draw = isDraw(board)
@@ -45,6 +47,8 @@ export function TicTacToePage() {
           onResetScore={resetScore}
           onToggleCpu={toggleCpu}
           vsCpu={vsCpu}
+          difficulty={difficulty}
+          onChangeDifficulty={setDifficulty}
         />
       </div>
     </div>

@@ -2,7 +2,7 @@ import { create } from "zustand"
 import { devtools, persist } from "zustand/middleware"
 import { EMPTY_BOARD } from "./constants"
 import { calculateWinner, isDraw, nextPlayer } from "./rules"
-import type { Board, Player } from "./types"
+import type { Board, Difficulty, Player } from "./types"
 
 type Score = { X: number; O: number; draws: number }
 
@@ -11,6 +11,7 @@ type State = {
   step: number
   vsCpu: boolean
   score: Score
+  difficulty: Difficulty
 }
 type Actions = {
   play: (index: number) => void
@@ -19,6 +20,7 @@ type Actions = {
   jump: (step: number) => void
   toggleCpu: () => void
   resetScore: () => void
+  setDifficulty: (d: Difficulty) => void
 }
 
 export const useGame = create<State & Actions>()(
@@ -29,6 +31,7 @@ export const useGame = create<State & Actions>()(
         step: 0,
         vsCpu: false,
         score: { X: 0, O: 0, draws: 0 },
+        difficulty: "hard",
 
         play: (index) => {
           const { history, step, score } = get()
@@ -114,6 +117,7 @@ export const useGame = create<State & Actions>()(
 
         resetScore: () =>
           set({ score: { X: 0, O: 0, draws: 0 } }, false, "game/resetScore"),
+        setDifficulty: (d) => set({ difficulty: d }, false, "game/setDifficulty"),
       }),
       { name: "ttt-state-v1" }
     )

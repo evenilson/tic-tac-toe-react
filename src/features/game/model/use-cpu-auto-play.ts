@@ -1,12 +1,13 @@
 import { useEffect } from "react"
-import { bestCpuMove } from "./ai"
+import { bestCpuMoveWithDifficulty } from "./ai"
 import { CPU } from "./constants"
 import { calculateWinner, isDraw, nextPlayer } from "./rules"
-import { useActions, useBoard, useVsCpu } from "./selectors"
+import { useActions, useBoard, useDifficulty, useVsCpu } from "./selectors"
 
 export function useCpuAutoPlay(delayMs = 160) {
   const board = useBoard()
   const vsCpu = useVsCpu()
+  const difficulty = useDifficulty()
   const { playAs } = useActions()
   const win = calculateWinner(board)
   const draw = isDraw(board)
@@ -17,11 +18,11 @@ export function useCpuAutoPlay(delayMs = 160) {
       return
     }
     const id = setTimeout(() => {
-      const move = bestCpuMove(board)
+      const move = bestCpuMoveWithDifficulty(board, difficulty)
       if (move != null) {
         playAs(move, CPU)
       }
     }, delayMs)
     return () => clearTimeout(id)
-  }, [vsCpu, win, draw, turn, board, playAs, delayMs])
+  }, [vsCpu, win, draw, turn, board, playAs, delayMs, difficulty])
 }

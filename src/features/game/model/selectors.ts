@@ -5,6 +5,7 @@ export const useBoard = () => useGame((s) => s.history[s.step])
 export const useStep = () => useGame((s) => s.step)
 export const useVsCpu = () => useGame((s) => s.vsCpu)
 export const useScore = () => useGame((s) => s.score)
+export const useDifficulty = () => useGame((s) => s.difficulty)
 
 export const useActions = () =>
   useGame(
@@ -15,5 +16,6 @@ export const useActions = () =>
       jump: s.jump,
       toggleCpu: s.toggleCpu,
       resetScore: s.resetScore,
+      setDifficulty: s.setDifficulty,
     }))
   )

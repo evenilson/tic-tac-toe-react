@@ -27,7 +27,8 @@ export function GameBoard({
               "aspect-square rounded-lg bg-slate-800 font-bold text-3xl shadow-lg shadow-slate-900 hover:bg-slate-900",
               disabled && "bg-slate-900",
               isWin &&
-                "border-4 border-green-300 motion-safe:animate-[spin_1s_linear_1]"
+                "border-4 border-green-300 motion-safe:animate-[spin_1s_linear_1]",
+              disabled && !isWin && "opacity-50"
             )}
             disabled={disabled || cell !== null}
             // biome-ignore lint/suspicious/noArrayIndexKey: is safe
