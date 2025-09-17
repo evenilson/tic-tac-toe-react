@@ -1,1 +1,5 @@
 @import "tailwindcss";
+@theme {
+  --font-galindo: "Galindo", sans-serif;
+  --font-urbanist: "Urbanist", sans-serif;
+}
